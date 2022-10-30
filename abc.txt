@@ -1,0 +1,87 @@
+{
+  course_name: 'course2',
+  course_title: 'Course 1',
+  description: 'This is a demo course',
+  images: [],
+  _id: new ObjectId("635ebb9a3aef38e30c607dfb"),
+  createdAt: 2022-10-30T17:59:54.879Z,
+  updatedAt: 2022-10-30T17:59:54.879Z,
+  __v: 0
+} 
+
+
+===========================================
+$ npm install -g heroku
+$ heroku login
+$ heroku git:remote -a bonzercode-api
+//// $ git checkout master >> $ git add . >> 
+//// $ git commit -m "master updated" >> $ git push origin master
+$ git push heroku master
+$ set git remote heroku to https://git.heroku.com/bonzercode-api.git
+===========================================
+
+===========================================
+$ npm install -g heroku
+
+===========================================
+$ heroku login     ...........
+Logged in as erajayranjan@gmail.com
+
+===========================================
+$ heroku git:remote -a bonzercode-api
+set git remote heroku to https://git.heroku.com/bonzercode-api.git
+
+//////$ git push heroku master
+
+===========================================
+$ git checkout master
+Switched to a branch 'master'
+
+===========================================
+User@DESKTOP-K545O08 MINGW64 /f/code/bonzercode-api (master)
+$ git add .
+
+===========================================
+User@DESKTOP-K545O08 MINGW64 /f/code/bonzercode-api (master)
+$ git commit -m "master added"
+On branch master
+nothing to commit, working tree clean
+
+===========================================
+User@DESKTOP-K545O08 MINGW64 /f/code/bonzercode-api (master)
+$ git push origin master
+
+To https://github.com/erajayranjan/bonzercode-api.git
+ * [new branch]      master -> master
+
+===========================================
+User@DESKTOP-K545O08 MINGW64 /f/code/bonzercode-api (master)
+$ git push heroku master
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+
+remote: -----> Building on the Heroku-22 stack
+
+remote: Verifying deploy... done.
+To https://git.heroku.com/bonzercode-api.git
+   31933d5..63ec64f  master -> master
+
+===========================================
+User@DESKTOP-K545O08 MINGW64 /f/code/bonzercode-api (master)
+$ set git remote heroku to https://git.heroku.com/bonzercode-api.git
+
+set git remote heroku to https://git.heroku.com/bonzercode-api.git
+heroku git:remote -a bonzercode-api
+===========================================
+===========================================
+===========================================
+===========================================
+git checkout -b master
+git add .
+git commit -m "master added"
+git push origin master
+git push heroku master
+===========================================
+===========================================
+===========================================
+===========================================

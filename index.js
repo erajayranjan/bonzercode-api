@@ -18,6 +18,7 @@ mongoose
 app.use(cors());
 app.use(express.json());
 app.use('/auth', require('./routes/user'));
+app.use('/course', require('./routes/course'));
 
 const PORT=process.env.PORT || 5000;
 
