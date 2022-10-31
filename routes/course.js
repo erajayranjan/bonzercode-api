@@ -7,7 +7,7 @@ const Course= require('../models/course');
 const {requireLogin}= require('../middleware/auth')
 
 // Get All Course
-router.get('/all-course',  async(req, res)=>{
+router.get('/all-course', async(req, res)=>{
     try{
         let course =await Course.find();
         if(!course){
@@ -15,7 +15,8 @@ router.get('/all-course',  async(req, res)=>{
         }
         return res.status(200).json({message:"success", data:course});
     } catch(err) {
-         console.log(err.message);
+         console.log(err);
+         return res.status(400).json({message:err.message ||"failure", error:err});
         }
 })
 
@@ -30,11 +31,13 @@ router.get('/:id',  async(req, res)=>{
         return res.status(200).json({message:"success", data:course});
     } catch(err) {
          console.log(err.message);
+         return res.status(400).json({message:err.message ||"failure", error:err});
         }
 })
 
 //Add Course
-router.post('/add-course',  async(req, res)=>{
+// router.post('/add-course', requireLogin, async(req, res)=>{
+router.post('/add-course', requireLogin,  async(req, res)=>{
     const {course_name, course_title, description, overview, images, price, discount, selling_price }=req.body;
     console.log(req.body )
     try{
@@ -50,6 +53,7 @@ router.post('/add-course',  async(req, res)=>{
         return res.status(201).json({message:"Course created successfully!", data:courseSaved});
     } catch(err) {
          console.log(err.message);
+         return res.status(400).json({message:err.message ||"failure", error:err});
         }
 })
 
@@ -83,6 +87,7 @@ router.get('/', requireLogin, async (req, res)=>{
         res.json({course});
     } catch (err){
         console.log(err);
+        return res.status(400).json({message:err.message ||"failure", error:err});
     }
 });
 

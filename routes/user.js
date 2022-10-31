@@ -25,6 +25,7 @@ router.post('/register', async(req, res)=>{
         return res.status(201).json({message:"User created successfully please login using credentials!"});
     } catch(err) {
          console.log(err.message);
+         return res.status(400).json({message:err.message ||"failure", error:err});
         }
 })
 
@@ -46,18 +47,34 @@ router.post('/login', async (req, res)=>{
         return res.json({token});
 
     } catch (err){
-        console.log(err.message);
+        // console.log(err.message);
+        return res.status(400).json({message:err.message ||"failure", error:err});
     }
 });
 
+// Get All User
+router.get('/users',  async(req, res)=>{
+    try{
+        let users =await User.find();
+        if(!users){
+            return res.status(400).json({error:"No users found!"});
+        }
+        return res.status(200).json({message:"success", data:users});
+    } catch(err) {
+         console.log(err.message);
+         return res.status(400).json({message:err.message ||"failure", error:err});
+        }
+})
+
 //
 router.get('/', requireLogin, async (req, res)=>{
-    console.log(req.user)
+    console.log(req)
     try {
         const user= await User.findById(req.user._id).select("-password");
         res.json({user});
     } catch (err){
-        console.log(err);
+        // console.log(err);
+        return res.status(401).json({message:"Unauthorized Access!", error:err})
     }
 });
 
