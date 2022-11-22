@@ -6,6 +6,15 @@ const userSchema=new mongoose.Schema({
     email: {
         type: String,
     },
+    role: {
+        type: String,
+    },
+    status: {
+        type: Boolean,
+    },
+    contact: {
+        type: String,
+    },
     password: {
         type: String,
     }
