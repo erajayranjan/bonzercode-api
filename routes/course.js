@@ -50,7 +50,7 @@ router.post('/add-course', requireLogin,  async(req, res)=>{
         })
         const courseSaved= await course.save();
         courseSaved && res && console.log(courseSaved)
-        return res.status(201).json({message:"Course created successfully!", data:courseSaved});
+        return res.status(201).json({status:201, message:"Course created successfully!", data:courseSaved});
     } catch(err) {
          console.log(err.message);
          return res.status(400).json({message:err.message ||"failure", error:err});
