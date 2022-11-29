@@ -6,8 +6,8 @@ const userSchema=new mongoose.Schema({
     email: {
         type: String,
     },
-    role: {
-        type: String,
+    roles: {
+        type: Array ,
     },
     status: {
         type: Boolean,
@@ -17,7 +17,13 @@ const userSchema=new mongoose.Schema({
     },
     password: {
         type: String,
-    }
+    },
+    createdBy:{
+        type: String,
+    },
+    updatedBy:{
+        type: String, 
+    },
 }, {timestamps: true})
 
 module.exports=mongoose.model("User",userSchema);
