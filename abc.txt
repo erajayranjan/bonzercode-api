@@ -80,6 +80,7 @@ git checkout -b master
 git add .
 git commit -m "master added"
 git push origin master
+heroku login
 git push heroku master
 ===========================================
 ===========================================
