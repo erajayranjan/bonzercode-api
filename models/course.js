@@ -15,6 +15,9 @@ const courseSchema=new mongoose.Schema({
     images: {
         type: Array,
     },
+    features: {
+        type: Array,
+    },
     key_features: {
         type: Array,
     },

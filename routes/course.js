@@ -38,7 +38,7 @@ router.get('/:id',  async(req, res)=>{
 //Add Course
 // router.post('/add-course', requireLogin, async(req, res)=>{
 router.post('/add-course', requireLogin,  async(req, res)=>{
-    const {course_name, course_title, description, overview, images, price, discount, selling_price }=req.body;
+    const {course_name, course_title, description, overview, features, images, price, discount, selling_price }=req.body;
     console.log(req.body )
     try{
         let course =await Course.findOne({course_name});
@@ -46,7 +46,7 @@ router.post('/add-course', requireLogin,  async(req, res)=>{
             return res.status(400).json({error:"Course already exists with this name!"});
         }
         course=new Course({
-            course_name, course_title, description, overview, images, price, discount, selling_price 
+            course_name, course_title, description, overview, features, images, price, discount, selling_price 
         })
         const courseSaved= await course.save();
         courseSaved && res && console.log(courseSaved)
@@ -78,6 +78,24 @@ router.post('/add-course', requireLogin,  async(req, res)=>{
 //         console.log(err.message);
 //     }
 // });
+
+// 
+// Delete Course by Id
+router.delete('/:id',  async(req, res)=>{
+    try{
+        let id=req.params.id
+        let course =await Course.findById(id);
+        if(!course){
+            return res.status(400).json({error:"No course found!"});
+        }
+        const courseDeleted= await course.delete();
+        
+        return res.status(200).json({message:`${course.course_title} Deleted successfully`});
+    } catch(err) {
+         console.log(err.message);
+         return res.status(400).json({message:err.message ||"failure", error:err});
+        }
+})
 
 //
 router.get('/', requireLogin, async (req, res)=>{

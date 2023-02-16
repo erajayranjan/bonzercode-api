@@ -52,6 +52,30 @@ router.post('/login', async (req, res)=>{
     }
 });
 
+// Login with User Data
+router.post('/login_user', async (req, res)=>{
+    const {email, password}= req.body;
+    try{
+        let user=await User.findOne({email});
+        if(!user){
+            return res.status(400).json({error: "Invalid credentials!"});
+        }     
+        const isMatch=await bcrypt.compare(password, user.password);
+        if(!isMatch){
+            return res.status(400).json({error:"Invalid password!"})
+        }
+        const userWithoutPassword= await User.findById(user._id).select("-password");
+        const token=jwt.sign({_id:user._id}, process.env.JWT_SECRET,{
+            expiresIn:"8h",
+        });
+        return res.json({token, user:userWithoutPassword });
+
+    } catch (err){
+        // console.log(err.message);
+        return res.status(400).json({message:err.message ||"failure", error:err});
+    }
+});
+
 // Get All User
 router.get('/users',  async(req, res)=>{
     try{
