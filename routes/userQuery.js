@@ -56,7 +56,28 @@ router.post('/add-userQuery', requireLogin,  async(req, res)=>{
          return res.status(400).json({message:err.message ||"failure", error:err});
         }
 })
-
+//Add GuestQuery
+// router.post('/add-guestQuery', requireLogin, async(req, res)=>{
+    router.post('/add-guestQuery',  async(req, res)=>{
+        const {name, email, contact, query, status, remark }=req.body;
+        // console.log(req.body )
+        try{
+            // let userQuery =await UserQuery.findOne({name});
+            // if(userQuery){
+            //     return res.status(400).json({error:"UserQuery already exists with this name!"});
+            // }
+            let userQuery=new UserQuery({
+                name, email, contact, query, status, remark
+            })
+            const userQuerySaved= await userQuery.save();
+            userQuerySaved && res && console.log(userQuerySaved)
+            return res.status(201).json({status:201, message:"Your query sent successfully!", data:userQuerySaved});
+        } catch(err) {
+             console.log(err.message);
+             return res.status(400).json({message:err.message ||"failure", error:err});
+            }
+    })
+    
 //Edit UserQuery
     router.put('/edit-userQuery/:id', requireLogin,  async(req, res)=>{
         let id=req.params.id
