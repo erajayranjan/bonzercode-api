@@ -6,6 +6,9 @@ const courseSchema=new mongoose.Schema({
     course_title: {
         type: String,
     },
+    logo:{
+        type:String
+    },
     description: {
         type: String,
     },

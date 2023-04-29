@@ -4,7 +4,8 @@ const jwt=require('jsonwebtoken');
 
 const UserQuery= require('../models/userQuery');
 
-const {requireLogin}= require('../middleware/auth')
+const {requireLogin}= require('../middleware/auth');
+const testEmail = require('./notification');
 
 // Get All UserQuery
 router.get('/all-userQuery', async(req, res)=>{
@@ -70,7 +71,11 @@ router.post('/add-userQuery', requireLogin,  async(req, res)=>{
                 name, email, contact, query, status, remark
             })
             const userQuerySaved= await userQuery.save();
-            userQuerySaved && res && console.log(userQuerySaved)
+            // if(userQuerySaved && res ){
+            //     console.log(userQuerySaved)
+            //     console.log("userQuerySaved>>>>",userQuerySaved)
+            //     // testEmail("testing_____emailllll");
+            // }
             return res.status(201).json({status:201, message:"Your query sent successfully!", data:userQuerySaved});
         } catch(err) {
              console.log(err.message);
@@ -93,7 +98,10 @@ router.post('/add-userQuery', requireLogin,  async(req, res)=>{
                 name, email, contact, query, status, remark
             })
             const userQuerySaved= await userQuery.updateOne();
-            userQuerySaved && res && console.log(userQuerySaved)
+            // if(userQuerySaved && res ){
+            //     console.log("userQuerySaved>>>>",userQuerySaved)
+            //     testEmail();
+            // }
             return res.status(201).json({status:201, message:"Data updated successfully!", data:userQuerySaved});
         } catch(err) {
              console.log(err.message);

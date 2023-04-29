@@ -26,6 +26,7 @@ app.use('/auth', require('./routes/user'));
 app.use('/course', require('./routes/course'));
 app.use('/userQuery', require('./routes/userQuery'));
 app.use('/uploadFile', require('./routes/uploadFile'));
+// app.use('/notification', require('./routes/notification'));
 
 app.post('/s3Url', async (req, res) => {
     const fileName=req.body.fileName;

@@ -8,7 +8,7 @@ const {requireLogin}= require('../middleware/auth')
 
 //Register User
 router.post('/register', async(req, res)=>{
-    const {name, email, password, role}=req.body;
+    const {name, email, password, role, roles}=req.body;
     try{
         let user =await User.findOne({email});
         if(user){
@@ -20,6 +20,7 @@ router.post('/register', async(req, res)=>{
             email,
             password: hashed_password,
             role,
+            roles
         })
         await user.save();
         return res.status(201).json({message:"User created successfully please login using credentials!"});
@@ -69,6 +70,7 @@ router.post('/login_user', async (req, res)=>{
             expiresIn:"8h",
         });
         return res.json({token, user:userWithoutPassword });
+        // return res.json({token, user:{...userWithoutPassword, roles:[0,1,5]} });
 
     } catch (err){
         // console.log(err.message);
